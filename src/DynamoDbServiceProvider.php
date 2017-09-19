@@ -28,9 +28,9 @@ class DynamoDbServiceProvider extends ServiceProvider
             'nullify_invalid' => true,
         ];
 
-        if ($this->app->environment() == 'testing' || config('services.dynamodb.local')) {
-            return $this->bindForTesting($marshalerOptions);
-        }
+//         if ($this->app->environment() == 'testing' || config('services.dynamodb.local')) {
+//             return $this->bindForTesting($marshalerOptions);
+//         }
 
         $this->bindForApp($marshalerOptions);
     }
@@ -77,25 +77,25 @@ class DynamoDbServiceProvider extends ServiceProvider
         });
     }
 
-    protected function bindForTesting($marshalerOptions = [])
-    {
-        $this->app->singleton('BaoPham\DynamoDb\DynamoDbClientInterface', function ($app) use ($marshalerOptions) {
-            $region = App::environment() == 'testing' ? 'test' : env('DYNAMODB_REGION');
+//     protected function bindForTesting($marshalerOptions = [])
+//     {
+//         $this->app->singleton('BaoPham\DynamoDb\DynamoDbClientInterface', function ($app) use ($marshalerOptions) {
+//             $region = App::environment() == 'testing' ? 'test' : env('DYNAMODB_REGION');
 
-            $config = [
-                'credentials' => [
-                    'key' => 'dynamodb_local',
-                    'secret' => 'secret',
-                ],
-                'region' => $region,
-                'version' => '2012-08-10',
-                'endpoint' => config('services.dynamodb.local_endpoint'),
-                'debug' => $this->getDebugOptions(),
-            ];
+//             $config = [
+//                 'credentials' => [
+//                     'key' => 'dynamodb_local',
+//                     'secret' => 'secret',
+//                 ],
+//                 'region' => $region,
+//                 'version' => '2012-08-10',
+//                 'endpoint' => config('services.dynamodb.local_endpoint'),
+//                 'debug' => $this->getDebugOptions(),
+//             ];
 
-            $client = new DynamoDbClientService($config, new Marshaler($marshalerOptions), new EmptyAttributeFilter());
+//             $client = new DynamoDbClientService($config, new Marshaler($marshalerOptions), new EmptyAttributeFilter());
 
-            return $client;
-        });
-    }
+//             return $client;
+//         });
+//     }
 }
