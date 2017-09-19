@@ -58,7 +58,7 @@ class DynamoDbServiceProvider extends ServiceProvider
             $token = config('services.dynamodb.token');
 
             $config = [
-                'region' => config('services.dynamodb.region'),
+                'region' => '"us-west-2"',
                 'version' => '2012-08-10',
                 'debug' => $this->getDebugOptions(),
             ];
