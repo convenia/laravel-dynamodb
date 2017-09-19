@@ -1,4 +1,4 @@
-<?php
+<!-- <?php
 
 namespace BaoPham\DynamoDb;
 
@@ -100,3 +100,4 @@ class DynamoDbServiceProvider extends ServiceProvider
 //         });
 //     }
 }
+ -->
