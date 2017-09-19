@@ -80,7 +80,7 @@ class DynamoDbServiceProvider extends ServiceProvider
     protected function bindForTesting($marshalerOptions = [])
     {
         $this->app->singleton('BaoPham\DynamoDb\DynamoDbClientInterface', function ($app) use ($marshalerOptions) {
-            $region = App::environment() == 'testing' ? 'test' : 'stub';
+            $region = App::environment() == 'testing' ? 'test' : env('DYNAMODB_REGION');
 
             $config = [
                 'credentials' => [
