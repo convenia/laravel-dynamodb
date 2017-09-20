@@ -16,7 +16,7 @@ class DynamoDbServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        DynamoDbModel::setDynamoDbClientService($this->app->make(DynamoDbClientInterface::class));
+//        DynamoDbModel::setDynamoDbClientService($this->app->make(DynamoDbClientInterface::class));
     }
 
     /**
