@@ -28,9 +28,9 @@ class DynamoDbServiceProvider extends ServiceProvider
             'nullify_invalid' => true,
         ];
 
-//         if ($this->app->environment() == 'testing' || config('services.dynamodb.local')) {
-//             return $this->bindForTesting($marshalerOptions);
-//         }
+        if ($this->app->environment() == 'testing' || config('services.dynamodb.local')) {
+            return $this->bindForTesting($marshalerOptions);
+        }
 
         $this->bindForApp($marshalerOptions);
     }
@@ -80,7 +80,7 @@ class DynamoDbServiceProvider extends ServiceProvider
     protected function bindForTesting($marshalerOptions = [])
     {
         $this->app->singleton('BaoPham\DynamoDb\DynamoDbClientInterface', function ($app) use ($marshalerOptions) {
-            $region = App::environment() == 'testing' ? 'test' : env('DYNAMODB_REGION');
+            $region = App::environment() == 'testing' ? 'test' : 'stub';
 
             $config = [
                 'credentials' => [
@@ -99,4 +99,3 @@ class DynamoDbServiceProvider extends ServiceProvider
         });
     }
 }
-
